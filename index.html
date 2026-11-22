@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>殘響 ECHOES</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="title" class="hidden">
+  <div class="tbox">
+    <div class="logo">殘響</div>
+    <div class="sub">E C H O E S</div>
+    <p class="tag">只有你，能夠成長。</p>
+    <label>你的名字<input id="name" maxlength="8" value="夜行" autocomplete="off"></label>
+    <button id="btn-new" class="primary">開始</button>
+    <button id="btn-continue">繼續上次的進度</button>
+    <div class="themes">配色
+      <button data-theme="teal" title="青綠"></button>
+      <button data-theme="violet" title="紫黑"></button>
+      <button data-theme="amber" title="琥珀金"></button>
+      <button data-theme="silver" title="冷銀"></button>
+    </div>
+  </div>
+</div>
+<div id="game" class="hidden">
+  <header>
+    <div class="brand">殘響 <small>ECHOES</small></div>
+    <div id="topinfo"></div>
+    <button id="btn-mute">音效：開</button>
+    <button id="btn-menu">回標題</button>
+  </header>
+  <div id="layout">
+    <main>
+      <div id="banner" class="hidden"></div>
+      <div id="scene-head"><span id="loc"></span><h2 id="scene-title"></h2></div>
+      <div id="bossbar" class="hidden"></div>
+      <div id="lines"></div>
+      <div id="choices"></div>
+    </main>
+    <aside id="side"></aside>
+  </div>
+</div>
+<div id="vignette"></div>
+<div id="hurtflash"></div>
+<script src="src/engine.js"></script>
+<script src="src/audio.js"></script>
+<script src="src/art-gen.js"></script>
+<script src="src/assets.js"></script>
+<script src="src/ui.js"></script>
+</body>
+</html>

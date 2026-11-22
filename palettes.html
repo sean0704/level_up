@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>殘響 — 配色對照</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body { height: auto; padding: 22px; background: #050608; }
+  h1 { font-size: 20px; letter-spacing: 4px; margin: 0 0 4px; color: #e6e8ee; }
+  .lead { color: #7a8494; font-size: 13px; margin: 0 0 20px; font-family: Menlo, "PingFang TC", monospace; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .col { background: var(--bg); color: var(--text); border: 1px solid var(--line); padding: 16px; }
+  .col h2 { margin: 0 0 2px; font-size: 18px; letter-spacing: 3px; color: var(--sys); }
+  .col .desc { font-family: Menlo, "PingFang TC", monospace; font-size: 11px; color: var(--dim); margin-bottom: 14px; min-height: 32px; line-height: 1.5; }
+  .col .ln { animation: none; font-size: 14px; }
+  .col .ln.sys::after { display: none; }
+  .col .ch { margin-bottom: 6px; font-size: 14px; }
+  .sil { border: 1px solid var(--line); margin: 12px 0; background: radial-gradient(ellipse at 50% 100%, rgba(var(--sys-rgb), .16), transparent 70%); }
+  .sil svg { display: block; width: 100%; height: auto; }
+  .cap { font-family: Menlo, "PingFang TC", monospace; font-size: 10px; color: var(--dim); letter-spacing: 2px; margin: 12px 0 4px; }
+  .col a { display: block; text-align: center; margin-top: 12px; padding: 8px; border: 1px solid var(--sys); color: var(--sys); text-decoration: none; font-family: Menlo, "PingFang TC", monospace; font-size: 12px; letter-spacing: 2px; }
+  .col a:hover { background: rgba(var(--sys-rgb), .12); }
+  .win { font-family: Menlo, "PingFang TC", monospace; font-size: 12px; }
+  @media (max-width: 1100px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<h1>配色對照</h1>
+<p class="lead">四種主色調套在同一組介面上。中間的首領圖是「剪影加單色強調」美術方向的示意。點最下方的按鈕可直接用該配色開啟遊戲。</p>
+<div class="grid" id="grid"></div>
+<script>
+const THEMES = [
+  ['teal', '青綠', '目前的配色。冷調、科技感，像終端機。'],
+  ['violet', '紫黑', '最貼近影子與殘響的主題，氣氛偏詭譎。'],
+  ['amber', '琥珀金', '暖色、古老、帶儀式感，像刻印而非螢幕。'],
+  ['silver', '冷銀', '近乎無彩，極簡冷冽；紅色與紫色會特別跳。'],
+];
+const boss = `<svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg">
+  <g fill="#020203">
+    <path d="M0 190 L0 172 L300 172 L300 190 Z"/>
+    <path d="M92 172 L84 120 L62 112 L40 150 L26 146 L46 92 L78 70 L104 64 L112 38 L134 22 L166 22 L188 38 L196 64 L222 70 L254 92 L274 146 L260 150 L238 112 L216 120 L208 172 Z"/>
+    <path d="M110 40 L96 12 L120 30 Z"/><path d="M190 40 L204 12 L180 30 Z"/>
+  </g>
+  <g fill="none" stroke="rgb(var(--sys-rgb))" stroke-width="2.2" stroke-linecap="round" style="filter: drop-shadow(0 0 5px rgb(var(--sys-rgb)))">
+    <path d="M124 58 L132 66 L140 58 L150 68 L160 58 L168 66 L176 58"/>
+    <path d="M128 44 L138 46"/><path d="M162 46 L172 44"/>
+    <path d="M150 84 L150 150" stroke-width="1.2" opacity=".55"/>
+  </g>
+</svg>`;
+document.getElementById('grid').innerHTML = THEMES.map(([id, name, desc]) => `
+  <div class="col" data-theme="${id}">
+    <h2>${name}</h2><div class="desc">${desc}</div>
+    <p class="ln sys">已偵測到適格者。\n【殘響系統】啟動。\n\n你將能夠成長。只有你。</p>
+    <p class="ln">月台盡頭，一具由閘門與鐵軌絞成的巨軀緩緩轉過身。</p>
+    <div class="cap">首領剪影示意</div>
+    <div class="sil">${boss}</div>
+    <div class="bossbar"><div class="nm"><span>月台看守者・鐵顎</span><span>⚠ 蓄力中</span></div><div class="bar hp"><i style="width:64%"></i><span>HP 218 / 340</span></div></div>
+    <button class="ch"><kbd>1</kbd><span>攻擊</span><span class="sub">約 23 傷害</span></button>
+    <button class="ch" style="border-color:var(--sys);background:rgba(var(--sys-rgb),.07)"><kbd>2</kbd><span>技能【強擊】</span><span class="sub">5 魔力</span></button>
+    <div class="cap">狀態視窗</div>
+    <div class="win"><h3><span>STATUS</span><span>狀態</span></h3><div class="body">
+      <div class="who"><span class="nm">夜行</span><span class="lv">Lv.5</span></div>
+      <div class="bar hp"><i style="width:55%"></i><span>HP 74 / 135</span></div><div class="bar mp"><i style="width:80%"></i><span>MP 28 / 35</span></div>
+      <div class="st"><span>力量</span><b>14</b><span class="d">攻擊力 +2</span><button>+</button></div>
+      <div class="echo">◆ 鐵顎<span>攻擊 10・深度 1</span></div>
+    </div></div>
+    <a href="index.html?theme=${id}">用這個配色開啟遊戲</a>
+  </div>`).join('');
+</script>
+</body>
+</html>
